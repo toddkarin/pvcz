@@ -1,0 +1,3 @@
+include pvcz/PVCZ-2019_GLDAS_NOAH025_3H_info.npz
+include pvcz/PVCZ-2019_world_PV_climate_stressors_and_zones.csv
+include pvcz/PVCZ-2019_world_PV_climate_stressors_and_zones.pkl
