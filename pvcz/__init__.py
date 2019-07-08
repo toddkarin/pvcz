@@ -1,3 +1,3 @@
 name = 'pvcz'
 
-import pvcz
+from pvcz import *
