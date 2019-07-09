@@ -1,6 +1,13 @@
-# pvcz
+# Photovoltaic Climate Zones (PVCZ)
+
 This package provides the photovoltaic climate zones (PVCZ) and climate stressor data which describes the degree of environmental degradation expected on a PV module located in different locations on the world. 
 
+# Install
+```python
+pip install pvcz
+```
+
+# About
 The data is calcuated from the global land data accumulation service (GLDAS) at 0.25 degree resolution across the world.
 
 For a full description, see the file 'Karin2019 - Photovoltaic Degradation Climate Zones - PVSC' which describes the methods.

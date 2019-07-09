@@ -1,3 +1,5 @@
 name = 'pvcz'
 
-from pvcz import *
+# __all__ = ['pvcz']
+
+from pvcz.main import *

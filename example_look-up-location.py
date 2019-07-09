@@ -3,7 +3,7 @@ Example for looking up stressors at a particular location.
 
 """
 
-import pvcz.pvcz as pvcz
+import pvcz
 
 # Note df is a flattened list of lat/lon values that only includes those over land
 df, info = pvcz.get_pvcz_data()

@@ -6,7 +6,7 @@ Example for importing the PV climate stressors and zones.
 import numpy as np
 import pandas as pd
 import os
-import pvcz.pvcz as pvcz
+import pvcz
 
 from mpl_toolkits.basemap import Basemap
 import matplotlib
