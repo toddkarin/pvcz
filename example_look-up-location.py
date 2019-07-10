@@ -6,7 +6,7 @@ Example for looking up stressors at a particular location.
 import pvcz
 
 # Note df is a flattened list of lat/lon values that only includes those over land
-df, info = pvcz.get_pvcz_data()
+df = pvcz.get_pvcz_data()
 
 # Point of interest specified by lat/lon coordinates.
 lat_poi = 32

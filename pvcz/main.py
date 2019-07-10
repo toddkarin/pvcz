@@ -21,6 +21,30 @@ def get_pvcz_data():
     df : dataframe
         List of lat/lon values and associated PV climate stressors and zones.
 
+    """
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+
+    filename = os.path.join(dir_path,
+                            'PVCZ-2019_world_PV_climate_stressors_and_zones.pkl')
+
+    df = pd.read_pickle(filename)
+    #
+    # info_filename = os.path.join(dir_path,'PVCZ-2019_GLDAS_NOAH025_3H_info.npz')
+    # info = load_npz(info_filename)
+
+    return df
+
+def get_pvcz_info():
+    """
+    Load pvcz climate data
+
+    Examples
+    --------
+
+        info = pvcz.get_pvcz_info()
+
+    Returns
+    -------
     info : dict
 
         Dictionary containing information on the dataset. Includes units of
@@ -44,16 +68,19 @@ def get_pvcz_data():
 
     """
     dir_path = os.path.dirname(os.path.realpath(__file__))
-
-    filename = os.path.join(dir_path,
-                            'PVCZ-2019_world_PV_climate_stressors_and_zones.pkl')
-
-    df = pd.read_pickle(filename)
+    #
+    # filename = os.path.join(dir_path,
+    #                         'PVCZ-2019_world_PV_climate_stressors_and_zones.pkl')
+    #
+    # df = pd.read_pickle(filename)
 
     info_filename = os.path.join(dir_path,'PVCZ-2019_GLDAS_NOAH025_3H_info.npz')
     info = load_npz(info_filename)
 
-    return (df, info)
+    return info
+
+
+
 
 def load_npz(filename):
     """
@@ -78,8 +105,6 @@ def load_npz(filename):
             except:
                 data[var] = arr[var]
     return data
-
-
 
 
 def inspect_database(root_path):

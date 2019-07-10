@@ -41,8 +41,8 @@ The following code snippet shows how to find the climate stressors and zones clo
 ```python
 import pvcz
 
-# Get the PVCZ data, df is a dataframe of lat/lon points on land and associated stressors.
-df, info = pvcz.get_pvcz_data()
+# Note df is a flattened list of lat/lon values that only includes those over land
+df = pvcz.get_pvcz_data()
 
 # Point of interest specified by lat/lon coordinates.
 lat_poi = 32
@@ -60,20 +60,16 @@ The following code makes a map of a particular stressor.
 
 ```python
 import numpy as np
-import pandas as pd
-import os
 import pvcz
-
 from mpl_toolkits.basemap import Basemap
 import matplotlib
 matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 
-
-
 # Get the data.
 # Note df is a flattened list of lat/lon values that only includes those over land
-df, info = pvcz.get_pvcz_data()
+df = pvcz.get_pvcz_data()
+info = pvcz.get_pvcz_info()
 
 # For some uses (like making a map), it is convenient to have a 2D grid of lat/long values
 data = {}
@@ -97,7 +93,7 @@ m = Basemap(projection='cyl', llcrnrlat=-60, urcrnrlat=90, \
 m.drawcoastlines(linewidth=0.5)
 m.drawcountries()
 
-# Draw the filled contours.
+# Draw the filled contour lines (the map).
 cs = m.contourf(xg, yg, data['T_equiv_rack'],
                 levels=40, cmap="jet", latlon=True)
 
@@ -105,6 +101,5 @@ cbar = m.colorbar(cs,location='bottom',pad="5%")
 cbar.set_label('Equivalent Temperature, Rack (C)')
 
 plt.show()
-
 ```
  
