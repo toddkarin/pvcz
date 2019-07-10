@@ -65,6 +65,8 @@ def load_npz(filename):
 
     Returns
     -------
+    data : dict
+        dictionary of the items in the npz file.
 
     """
     #
@@ -215,7 +217,23 @@ def get_unmasked_indices(nc):
 
 def convert_grid_to_flat(x,y,z,keepers):
     """
+    x_flat, y_flat, z_flat = convert_grid_to_flat(x,y,z,keepers) converts x,
+    y,z data and a list of which values to keep 'keepers' into three
+    flattened vectors x_flat, y_flat and z_flat.
 
+    Parameters
+    ----------
+    x : array size (N,1)
+        x
+    y : array size (M,1)
+
+    z : array size (N,M)
+
+    keepers : boolean array size (N,M)
+        Boolean array determining which indices of z are kept after flattening.
+
+    Returns
+    -------
 
     """
     xgrid, ygrid = np.meshgrid(x,y)
@@ -227,9 +245,39 @@ def convert_grid_to_flat(x,y,z,keepers):
     return x_flat, y_flat, z_flat
 
 def convert_flat_to_grid(z_flat, keepers,  lon_all, lat_all):
+    """
+    Convert the a flattened data vector z_flat into a gridded, masked numpy
+    array. keepers denotes the elements of a gridded (l
 
+    Parameters
+    ----------
+    z_flat : array
 
-    # Old method
+        z_flat is an array with size (np.sum(keepers*1),). This represents a
+        flattened list of all the valid points (those on land).
+
+    keepers : array of size (N*M,)
+
+        Boolean array describing whether a lat/lon point is on land or not.
+
+    lon_all : array of size (M,1)
+
+        All longitudes in the gridded data.
+
+    lat_all : array size (N,1)
+
+        All latitudes in the gridded data.
+
+    Returns
+    -------
+    zm : masked array, size (N,M)
+
+         gridded version of z_flat. Mask is true for points where keepers ==
+         False.
+
+    """
+
+    # Old method (only numeric data).
     # z_flat_all = np.zeros((len(keepers))) + np.nan
     # z_flat_all[keepers] = np.array(z_flat)
     #
@@ -237,6 +285,8 @@ def convert_flat_to_grid(z_flat, keepers,  lon_all, lat_all):
     # zm = np.ma.masked_invalid(z)
     #
 
+
+    # This method works for non-numeric data.
     z_flat_all = np.empty(shape=(len(keepers)), dtype=z_flat.dtype)
     z_flat_all[keepers] = np.array(z_flat)
 
@@ -246,7 +296,6 @@ def convert_flat_to_grid(z_flat, keepers,  lon_all, lat_all):
 
 
     return zm
-
 
 
 def equiv_temp_in_C(temperature, Ea):
@@ -394,7 +443,27 @@ def convert_units(input,input_units,output_units):
     return output
 
 def closest_degrees(lat_find, lon_find, lat_list, lon_list):
+    """
+    Finds closest lat/lon using Euclidean distance on a a cylindrical grid.
 
+    Parameters
+    ----------
+    lat_find : numeric
+        latitude to search for
+    lon_find : numeric
+        longitude to search for
+    lat_list : array
+        list of latitudes over which to perform the search
+    lon_list : array
+        list of longitudes over which to perform the search
+    Returns
+    -------
+    closest_index
+        argument of the closest index of lat_list, lon_list.
+    distance_in_degrees
+        distance to closest point in fractional degrees.
+
+    """
     distance = np.sqrt( (lat_find-lat_list)**2 + (lon_find-lon_list)**2 )
     closest_index = np.argmin(np.array(distance))
     distance_in_degrees = distance[closest_index]
@@ -504,18 +573,22 @@ def calculate_zone_by_threshold(stressor, threshold):
 
 def haversine_distance(lat1, lon1, lat2, lon2):
     """
-    Calculate Haversine distance between two locations.
+    Calculate Haversine distance in km between two locations.
 
     Parameters
     ----------
-    lat1
-    lon1
-    lat2
-    lon2
+    lat1 : numeric
+        latitude of first point, in degrees.
+    lon1 : numeric
+        longitude of first point, in degrees.
+    lat2 : numeric
+        latitude of second point, in degrees.
+    lon2 : numeric
+        longitude of second point, in degrees.
 
     Returns
     -------
-    numeric: Haversine distance.
+    numeric: Haversine distance in km.
 
     """
     p = 0.017453292519943295
@@ -530,10 +603,15 @@ def arg_closest_point(lat_point, lon_point, lat_list, lon_list):
 
     Parameters
     ----------
-    lat_point
-    lon_point
-    lat_list
-    lon_list
+    lat_point : numeric
+        latitude of point to search for, in degrees
+    lon_point : numeric
+        longitude of point to search for, in degrees.
+    lat_list : array
+        list of latitudes to search within, in degrees.
+    lon_list : array
+        list of longitudes to search within, in degrees. Must be the same size
+        as lat_list
 
     Returns
     -------
