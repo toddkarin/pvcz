@@ -8,6 +8,10 @@ Installation is easy with pip
 pip install pvcz
 ```
 
+Note that you should make sure you have:
+- pandas (v0.24.2 or higher to ensure that the ``pickle`` serialization used by this package works as intended)
+- For plotting, you will need to install matplotlib BaseMap (https://matplotlib.org/basemap/users/installing.html#installation)
+
 # About
 The data is calcuated from the global land data accumulation service (GLDAS) at 0.25 degree resolution across the world.
 
@@ -41,7 +45,7 @@ The following code snippet shows how to find the climate stressors and zones clo
 ```python
 import pvcz
 
-# Note df is a flattened list of lat/lon values that only includes those over land
+# Note df is a flattened pandas.DataFrame of lat/lon values that only includes those over land
 df = pvcz.get_pvcz_data()
 
 # Point of interest specified by lat/lon coordinates.
