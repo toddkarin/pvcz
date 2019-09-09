@@ -21,6 +21,7 @@ This dataset is provided as a csv file and as a pickle file containing climate s
 - T_equiv_rack_1p1eV: Arrhenius-weighted module equivalent temperature calculated using open-rack polymer-back temperature model and activation energy 1.1 eV, in C
 - T_equiv_roof_1p1eV: Arrhenius-weighted module equivalent temperature calculated using close-roof-mount glass-back temperature model and activation energy 1.1 eV, in
 Cs
+- T_equiv_rack_XXXeV: Arrhenius-weighted module equivalent temperature calculated using open-rack polymer-back temperature model and activation energy XXX eV, in C
 - specific_humidity_mean: Average specific humidity, in g/kg.
 - specific_humidity_rms: Root-mean-squared specific humidity, in g/kg.
 - T_velocity_rack: Average rate of change of module temperature using open-rack polymer-back temperature model, in C/hr.
@@ -28,6 +29,8 @@ Cs
 - GHI_mean: Mean global horizontal irradiance, in kWh/m2/day.
 - wind_speed: ASCE wind speed with a mean recurrence interval of 25 years, in m/s.
 - T_ambient_min: Minimum ambient temperature, in C
+- T_ambient_max: Maximum ambient temperature, in C
+- T_ambient_mean: Mean ambient temperature, in C
 - KG_zone: Koppen Geiger zone, in text
 - KG_numeric_zone: Koppen Geiger zone, as a number.
 - T_equiv_rack_zone: Temperature zone for open-rack modules as a number 0 through 9, equivalent to temperature zones T1 through T10 respectively.
