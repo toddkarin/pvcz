@@ -25,7 +25,7 @@ def get_pvcz_data():
     dir_path = os.path.dirname(os.path.realpath(__file__))
 
     filename = os.path.join(dir_path,
-                            'PVCZ-2019_world_PV_climate_stressors_and_zones.pkl')
+                            'PVCZ-2019_ver0p2_world_PV_climate_stressors_and_zones.pkl')
 
     df = pd.read_pickle(filename)
     #

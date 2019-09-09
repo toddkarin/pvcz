@@ -17,7 +17,3 @@ closest_index = pvcz.arg_closest_point(lat_poi, lon_poi, df['lat'], df['lon'])
 
 # Get the stressor data from this location
 location_data = df.iloc[closest_index]
-print(location_data)
-
-
-

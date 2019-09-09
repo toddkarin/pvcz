@@ -38,7 +38,7 @@ m.drawcoastlines(linewidth=0.5)
 m.drawcountries()
 
 # Draw the filled contour lines (the map).
-cs = m.contourf(xg, yg, data['T_equiv_rack'],
+cs = m.contourf(xg, yg, data['T_equiv_rack_1p1eV'],
                 levels=40, cmap="jet", latlon=True)
 
 cbar = m.colorbar(cs,location='bottom',pad="5%")

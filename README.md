@@ -3,7 +3,7 @@
 This package provides the photovoltaic climate zones (PVCZ) and climate stressor data which describes the degree of environmental degradation expected on a PV module located in different locations on the world. 
 
 # Install
-Installation is easy with pip
+pvcz can be installed with pip
 ```python
 pip install pvcz
 ```
@@ -13,7 +13,7 @@ The data is calcuated from the global land data accumulation service (GLDAS) at 
 
 For a full description, see the file 'Karin2019 - Photovoltaic Degradation Climate Zones - PVSC' which describes the methods.
 
-## Climate stressors
+# Climate stressors
 This dataset is provided as a csv file and as a pickle file containing climate stressors specific to PV degradation.
 
 - lat: latitude in fractional degrees.
@@ -34,7 +34,7 @@ C
 - pvcz: Photovoltaic climate zone, combined Temperature (rack) and humidity zones as a number 0 through 49, corresponding to temperature zones T1:H1, T2:H1, ... , T10:H5, see next variable as well.
 - pvcz_labeled: Photovoltaic climate zone, combined Temperature (rack) and humidity zones as an alpha- numeric key, e.g. T5:H2.
 
-## Examples
+# Examples
 
 The following code snippet shows how to find the climate stressors and zones closest to a particular latitude and longitude.
 
@@ -103,3 +103,6 @@ cbar.set_label('Equivalent Temperature, Rack (C)')
 plt.show()
 ```
  
+# Change Log
+
+- 0.2 Added multiple activation energies to equivalent temperature dataset.
