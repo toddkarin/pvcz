@@ -80,7 +80,18 @@ def get_pvcz_info():
     return info
 
 
+def get_pvcz_zones():
+    """
+    Get data structure containing information on the zone labeling.
 
+    Returns
+    -------
+
+    """
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    zones_filename = os.path.join(dir_path,'PVCZ-2019_ver0p2_zones.npz')
+
+    return load_npz(zones_filename)
 
 def load_npz(filename):
     """
