@@ -17,16 +17,19 @@ For a full description, see the file 'Karin2019 - Photovoltaic Degradation Clima
 This dataset is provided as a csv file and as a pickle file containing climate stressors specific to PV degradation.
 
 - lat: latitude in fractional degrees.
-- lon: longitude in fractional degres.
-- T_equiv_rack: Arrhenius-weighted module equivalent temperature calculated using open-rack polymer-back temperature model and activation energy 1.1 eV, in C
-- T_equiv_roof: Arrhenius-weighted module equiva- lent temperature calculated using close-roof-mount glass- back temperature model and activation energy 1.1 eV, in
-C
+- lon: longitude in fractional degrees.
+- T_equiv_rack_1p1eV: Arrhenius-weighted module equivalent temperature calculated using open-rack polymer-back temperature model and activation energy 1.1 eV, in C
+- T_equiv_roof_1p1eV: Arrhenius-weighted module equivalent temperature calculated using close-roof-mount glass-back temperature model and activation energy 1.1 eV, in
+Cs
 - specific_humidity_mean: Average specific humidity, in g/kg.
-- T_velocity: Average rate of change of module temperature using open-rack polymer-back temperature model, in C/hr.
+- specific_humidity_rms: Root-mean-squared specific humidity, in g/kg.
+- T_velocity_rack: Average rate of change of module temperature using open-rack polymer-back temperature model, in C/hr.
+- T_velocity_roof: Average rate of change of module temperature using roof-mount glass-back temperature model, in C/hr.
 - GHI_mean: Mean global horizontal irradiance, in kWh/m2/day.
 - wind_speed: ASCE wind speed with a mean recurrence interval of 25 years, in m/s.
 - T_ambient_min: Minimum ambient temperature, in C
-- KG_zone: Koppen Geiger zone.
+- KG_zone: Koppen Geiger zone, in text
+- KG_numeric_zone: Koppen Geiger zone, as a number.
 - T_equiv_rack_zone: Temperature zone for open-rack modules as a number 0 through 9, equivalent to temperature zones T1 through T10 respectively.
 - T_equiv_roof_zone: Temperature zone for close- roof-mount modules as a number 0 through 9, equivalent to temperature zones T1 through T10 respectively.
 - specific_humidity_mean_zone: Specific humid- ity zone, as a number 0 through 4, equivalent to temperature zones H1 through H5 respectively.
