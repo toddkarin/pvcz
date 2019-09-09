@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="pvcz",
-    version="0.2.0",
+    version="0.2.2",
     author="toddkarin",
     author_email="pvtools.lbl@gmail.com",
     description="Photovoltaic climate zones and degradation stressors",
