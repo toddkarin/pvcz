@@ -14,7 +14,7 @@ def get_pvcz_data():
     Examples
     --------
 
-        df, info = pvcz.get_pvcz_data()
+        df = pvcz.get_pvcz_data()
 
     Returns
     -------
