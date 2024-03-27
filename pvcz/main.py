@@ -34,6 +34,7 @@ def get_pvcz_data():
 
     return df
 
+
 def get_pvcz_info():
     """
     Load pvcz climate data
@@ -93,6 +94,7 @@ def get_pvcz_zones():
 
     return load_npz(zones_filename)
 
+
 def load_npz(filename):
     """
     Load npz file from a local file.
@@ -137,8 +139,6 @@ def inspect_database(root_path):
         pandas DataFrame containing information on files in the root_path.
 
     """
-
-
     # root_path = 'GLDAS_data'
     pattern = '*.nc4'
 
@@ -196,8 +196,7 @@ def inspect_database(root_path):
     # Redefine the index.
     files.index = range(files.__len__())
     return files
-    #
-
+ 
 
 def get_unmasked_indices(nc):
     """Make boolean array for converting to lat/lon pairs.
@@ -280,6 +279,7 @@ def convert_grid_to_flat(x,y,z,keepers):
 
     return x_flat, y_flat, z_flat
 
+
 def convert_flat_to_grid(z_flat, keepers,  lon_all, lat_all):
     """
     Convert the a flattened data vector z_flat into a gridded, masked numpy
@@ -329,8 +329,6 @@ def convert_flat_to_grid(z_flat, keepers,  lon_all, lat_all):
     z = np.reshape(z_flat_all, (len(lat_all), len(lon_all)))
 
     zm = np.ma.masked_array(data=z, mask=np.logical_not(keepers))
-
-
     return zm
 
 
@@ -354,7 +352,6 @@ def equiv_temp_in_C(temperature, Ea):
 
     T_equiv = -Ea/kB/np.log( np.mean( np.exp(-Ea/(kB*(temperature+273.15))))) - 273.15
     return T_equiv
-
 
 
 def convert_units(input,input_units,output_units):
@@ -390,9 +387,6 @@ def convert_units(input,input_units,output_units):
         'Hz' (Hertz) ==  'KHz' ==  'MHz' ==  'GHz' ==  'THz' ==
         'K' (kelvin) ==  'J' (Joules)
         'kJ/mol'
-
-
-    Todd Karin
 
     """
 
@@ -537,7 +531,6 @@ def uv_degradation_stressor(UV_irradiance, temperature,
     degradation
         cumulative degradation experienced.
 
-
     """
     Ea = convert_units(Ea, 'eV', 'J')
     kB = 1.381e-23
@@ -548,7 +541,6 @@ def uv_degradation_stressor(UV_irradiance, temperature,
         (relative_humidity / 100) ** n)
 
     return degradation
-
 
 
 def water_saturation_vapor_pressure(temperature_in_C):
@@ -580,7 +572,6 @@ def water_saturation_vapor_pressure(temperature_in_C):
     C6 = 1.80122502
     Pws = Pc*np.exp( Tc/T*(C1*v + C2*v**1.5 + C3*v**3 + C4*v**3.5 + C5*v**4 + \
                            C6*v**7.5 ))
-
     return Pws
 
 
@@ -631,6 +622,7 @@ def haversine_distance(lat1, lon1, lat2, lon2):
     a = 0.5 - np.cos((lat2-lat1)*p)/2 + np.cos(lat1*p)*np.cos(lat2*p) * (1-np.cos((lon2-lon1)*p)) / 2
     return 12742 * np.arcsin(np.sqrt(a))
 
+
 def arg_closest_point(lat_point, lon_point, lat_list, lon_list):
     """
     Calculate the index of the closest point in the list of coordinates (
@@ -643,9 +635,9 @@ def arg_closest_point(lat_point, lon_point, lat_list, lon_list):
         latitude of point to search for, in degrees
     lon_point : numeric
         longitude of point to search for, in degrees.
-    lat_list : array
+    lat_list : pandas series
         list of latitudes to search within, in degrees.
-    lon_list : array
+    lon_list : pandas series
         list of longitudes to search within, in degrees. Must be the same size
         as lat_list
 
@@ -653,8 +645,14 @@ def arg_closest_point(lat_point, lon_point, lat_list, lon_list):
     -------
         numeric : distance
     """
+    lat_list = lat_list.astype(np.float64)
+    lon_list = lon_list.astype(np.float64)
+    
     return np.argmin(
-        haversine_distance(np.array(lat_list), np.array(lon_list),
-                           lat_point, lon_point))
+        haversine_distance(
+            np.array(lat_list), 
+            np.array(lon_list),
+            lat_point, lon_point)
+    )
 
 
